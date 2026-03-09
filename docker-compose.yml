@@ -59,7 +59,7 @@ services:
     container_name: ai-middle-tier-frontend
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "90:80"
     depends_on:
       - backend
     networks:
