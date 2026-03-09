@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # PostgreSQL Database
   postgres:
@@ -25,7 +23,7 @@ services:
   # Backend API
   backend:
     build:
-      context: ../ai_middle_tier/backend
+      context: ../AI_Middle_Tier/backend
       dockerfile: ../../deploy_ai_middle/Dockerfile.backend
     container_name: ai-middle-tier-backend
     restart: unless-stopped
@@ -54,7 +52,7 @@ services:
   # Frontend
   frontend:
     build:
-      context: ../ai_middle_tier/frontend
+      context: ../AI_Middle_Tier/frontend
       dockerfile: ../../deploy_ai_middle/Dockerfile.frontend
       args:
         VITE_API_URL: ${VITE_API_URL}
