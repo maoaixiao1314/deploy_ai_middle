@@ -1,14 +1,13 @@
-# Backend Dockerfile
 FROM node:18-alpine AS builder
 
 WORKDIR /app
 
 # Copy package files
-COPY backend/package*.json ./
+COPY package*.json ./
 RUN npm ci
 
 # Copy source code
-COPY backend/ ./
+COPY . .
 
 # Generate Prisma client
 RUN npx prisma generate
@@ -22,11 +21,11 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy package files and install production dependencies only
-COPY backend/package*.json ./
+COPY package*.json ./
 RUN npm ci --only=production
 
 # Copy Prisma schema
-COPY backend/prisma ./prisma
+COPY prisma ./prisma
 
 # Copy built files from builder
 COPY --from=builder /app/dist ./dist
